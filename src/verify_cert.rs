@@ -870,7 +870,8 @@ impl<'a> PartialPath<'a> {
     }
 }
 
-const MAX_SUB_CA_COUNT: usize = 6;
+// Accommodate long QUIC certificate chains while retaining a bounded path depth.
+const MAX_SUB_CA_COUNT: usize = 16;
 
 pub(crate) struct PathNode<'a> {
     /// The path we're iterating.
@@ -1028,18 +1029,15 @@ mod tests {
 
     #[test]
     fn longest_allowed_path() {
-        assert!(build_and_verify_linear_chain(1).is_ok());
-        assert!(build_and_verify_linear_chain(2).is_ok());
-        assert!(build_and_verify_linear_chain(3).is_ok());
-        assert!(build_and_verify_linear_chain(4).is_ok());
-        assert!(build_and_verify_linear_chain(5).is_ok());
-        assert!(build_and_verify_linear_chain(6).is_ok());
+        for intermediates in 1..=16 {
+            assert!(build_and_verify_linear_chain(intermediates).is_ok());
+        }
     }
 
     #[test]
     fn path_too_long() {
         assert!(matches!(
-            build_and_verify_linear_chain(7),
+            build_and_verify_linear_chain(17),
             Err(ControlFlow::Continue(Error::MaximumPathDepthExceeded))
         ));
     }

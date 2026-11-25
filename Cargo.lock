@@ -454,6 +454,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "qwebpki"
+version = "0.103.17"
+dependencies = [
+ "aws-lc-rs",
+ "base64",
+ "bencher",
+ "bzip2",
+ "once_cell",
+ "rcgen",
+ "ring",
+ "rustls-pki-types",
+ "serde",
+ "serde_json",
+ "untrusted 0.9.0",
+ "x509-parser",
+]
+
+[[package]]
 name = "r-efi"
 version = "5.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -537,24 +555,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be040f8b0a225e40375822a563fa9524378b9d63112f53e19ffff34df5d33fdd"
 dependencies = [
  "zeroize",
-]
-
-[[package]]
-name = "rustls-webpki"
-version = "0.103.17"
-dependencies = [
- "aws-lc-rs",
- "base64",
- "bencher",
- "bzip2",
- "once_cell",
- "rcgen",
- "ring",
- "rustls-pki-types",
- "serde",
- "serde_json",
- "untrusted 0.9.0",
- "x509-parser",
 ]
 
 [[package]]

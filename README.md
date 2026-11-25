@@ -1,3 +1,20 @@
+# qwebpki
+
+`qwebpki` is the DQuic fork of rustls-webpki 0.103.17, based on upstream
+`f95e98a1d82c2c63bbd2491ce43010fdc9c31f06` from the 0.103 stable branch.
+It raises the maximum intermediate-certificate count from 6 to 16 for long
+QUIC certificate chains. Signature, EKU, time and name-constraint validation,
+and the path-building work budgets remain enabled. The library crate name
+remains `webpki`:
+
+```toml
+webpki = { package = "qwebpki", version = "0.103.17", features = ["ring"] }
+```
+
+The upstream ISC license and documentation below are retained.
+
+---
+
 [![Build Status](https://github.com/rustls/webpki/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rustls/webpki/actions/workflows/ci.yml?query=branch%3Amain)
 [![Coverage Status (codecov.io)](https://codecov.io/gh/rustls/webpki/branch/main/graph/badge.svg)](https://codecov.io/gh/rustls/webpki/)
 [![Documentation](https://docs.rs/rustls-webpki/badge.svg)](https://docs.rs/rustls-webpki/)
